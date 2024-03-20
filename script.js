@@ -4,9 +4,9 @@ let timezone = document.getElementById("timezone");
 let utc = document.getElementById("utc");
 let isp = document.getElementById("isp");
 let ipsearch = document.getElementById("ipsearch");
+let btn =  document.getElementById("btn");
 
-let map;
-let marker;
+
 
 async function getIpInfo(ipAddress) {
   try {
@@ -31,26 +31,36 @@ function updateIpInfo(data) {
 }
 
 function updateMap(latitude, longitude) {
-  map.setCenter({ lat: latitude, lng: longitude });
-  marker.setPosition({ lat: latitude, lng: longitude });
+    console.log('Updating map to:', latitude, longitude);
+    if (map && marker) {
+        const newPosition = new google.maps.LatLng(latitude, longitude);
+        map.setCenter({newPosition});
+        marker.setPosition({newPosition});
+    } else {
+        console.log('Map or marker not initialized');
+    }
 }
 
 function ipSearch() {
-  const ipLookUp = ipsearch.value.trim();
-  getIpInfo(ipLookUp)
-    .then((data) => {
-      if (ipLookUp) {
-        console.log(data);
-        updateIpInfo(data);
-        const [lat, lon] = data.loc.split(",").map(Number);
-        updateMap(lat, lon);
-      } else {
-        alert("Please enter an IP Address");
-      }
-    })
-    .catch((error) => console.error(error));
-  console.log("Searching for IP Address:", ipLookUp);
+    const ipLookUp = ipsearch.value.trim();
+    getIpInfo(ipLookUp)
+        .then(data => {
+            if (ipLookUp) {
+                console.log(data);
+                updateIpInfo(data);
+                const [lat, lon] = data.loc.split(',').map(Number);
+                updateMap(lat, lon);
+                console.log(lat, lon);
+            } else {
+                alert('Please enter an IP Address');
+            }
+        })
+        .catch(error => console.error(error));
+    console.log('Searching for IP Address:', ipLookUp);
 }
+
+let map;
+let marker;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -58,7 +68,7 @@ function initMap() {
     zoom: 8,
   });
 
-  marker = new google.maps.Marker({
+  marker = new google.maps.marker.Marker({
     position: { lat: 40.7128, lng: -74.006 },
     map: map,
     title: "IP Location",
@@ -71,4 +81,11 @@ ipsearch.addEventListener("keypress", function (event) {
   }
 });
 
-initMap();
+btn.addEventListener("click", ipSearch);
+
+function initialize() {
+    initMap();
+  }
+  
+  window.initialize = initialize;
+
