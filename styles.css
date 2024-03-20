@@ -1,0 +1,81 @@
+:root {
+    --Very-Dark-Gray: hsl(0, 0%, 17%);
+    --Dark-Gray: hsl(0, 0%, 59%);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    overflow: hidden;
+}
+
+.search {
+    margin-bottom: 0;
+    text-align: center;
+    background-image: url(./images/pattern-bg-desktop.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 20vh;
+}
+
+.search input {
+    width: 40%;
+    height: 20%;
+    border-radius: 15px;
+    border: none;
+}
+
+.search h1 {
+    color: #fff;
+}
+
+.t-headers {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+    top: 15%;
+    border-radius: 15px;
+    height: 12%;
+    background-color: #fff;
+    box-shadow: 1px 1px 5px;
+}
+
+.t-headers th {
+    color: var(--Dark-Gray);
+    font-size: 12px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.t-headers table {
+    padding: 0;
+    margin: 0;
+    border: collapse;
+}
+
+td {
+    padding: 15px 35px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+th, td {
+    border-right: 1px solid black;
+}
+
+th:last-child, td:last-child {
+    border-right: none;
+}
+
+gmp-map {
+    height: 100vh;
+    width: 100%;
+  }

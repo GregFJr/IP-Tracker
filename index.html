@@ -5,30 +5,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
   
   <title>Frontend Mentor | IP Address Tracker</title>
+
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
+
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAngjl77USTrPhNoiSW0YRsGLbD36ElQgk&callback=console.debug&libraries=maps,marker&v=beta"></script>
+
 </head>
 <body>
 
-  IP Address Tracker
+  <section class="search">
+  <h1>IP Address Tracker</h1>
 
-  Search for any IP address or domain
+  <input type="text" placeholder="  Search for any IP address or domain" id="ipsearch"></input>
+</section>
 
-  IP Address
-  Location
-  Timezone
-    UTC <!-- add offset value dynamically using the API -->
-  ISP
+<section class="t-headers">
+  <table>
+    <thead>
+      <tr>
+        <th>IP Address</th>
+        <th>Location</th>
+        <th>Timezone</th>
+        <th>ISP</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td id="ip"></td>
+        <td id="location"></td>
+        <td id="utc"></td>
+        <td id="isp"></td>
+      </tr>
+    </tbody>
+</table>
+</section>
+
+
+    <gmp-map id="map" center="40.12150192260742,-100.45039367675781" zoom="4" map-id="DEMO_MAP_ID">
+      <gmp-advanced-marker position="40.12150192260742,-100.45039367675781" title="My location"></gmp-advanced-marker>
+    </gmp-map>
+
+
+    <script>
+      let map;
+      let marker;
+
+      function initMap() {
+          // Initialize the map centered at a default location
+          map = new google.maps.Map(document.getElementById("map"), {
+              center: { lat: 40.7128, lng: -74.0060 }, // Default to New York City
+              zoom: 3, // Set the initial zoom level
+          });
+
+          // Initialize the marker at the same default location
+          marker = new google.maps.Marker({
+              position: { lat: 40.7128, lng: -74.0060 }, // Default to New York City
+              map: map,
+              title: "IP Location",
+          });
+      }
+
+      updatMap();
+  </script>
+
   
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
   </div>
+
+  
+  <script src="./script.js"></script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAngjl77USTrPhNoiSW0YRsGLbD36ElQgk"></script> -->
 </body>
 </html>
