@@ -26,7 +26,7 @@
   <section class="search">
   <h1>IP Address Tracker</h1>
 
-  <input type="text" placeholder="  Search for any IP address or domain" id="ipsearch"></input>
+  <input type="text" placeholder="  Search for any IP address or domain" id="ipsearch"><button id="btn"> > </button></input>
 </section>
 
 <section class="t-headers">
@@ -57,27 +57,7 @@
     </gmp-map>
 
 
-    <script>
-      let map;
-      let marker;
 
-      function initMap() {
-          // Initialize the map centered at a default location
-          map = new google.maps.Map(document.getElementById("map"), {
-              center: { lat: 40.7128, lng: -74.0060 }, // Default to New York City
-              zoom: 3, // Set the initial zoom level
-          });
-
-          // Initialize the marker at the same default location
-          marker = new google.maps.Marker({
-              position: { lat: 40.7128, lng: -74.0060 }, // Default to New York City
-              map: map,
-              title: "IP Location",
-          });
-      }
-
-      updatMap();
-  </script>
 
   
   <div class="attribution">
@@ -87,6 +67,5 @@
 
   
   <script src="./script.js"></script>
-  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAngjl77USTrPhNoiSW0YRsGLbD36ElQgk"></script> -->
 </body>
 </html>
